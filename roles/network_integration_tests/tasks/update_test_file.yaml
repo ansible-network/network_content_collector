@@ -1,6 +1,5 @@
 - name: "Update each module call to use the FQCN {{ file['path']|replace(collection_parent + '/test/integration/targets', '') }}"
   replace:
       dest: "{{ file['path'] }}"
-      regexp: '^(.*)({{ collection_name }}_[a-z0-9_]+:)(.*)$'
+      regexp: '^(\s+)({{ collection_name }}_[a-z0-9_]+:)(.*)$'
       replace: '\1{{ collection_namespace }}.{{ collection_name}}.\2\3'
-  check_mode: True

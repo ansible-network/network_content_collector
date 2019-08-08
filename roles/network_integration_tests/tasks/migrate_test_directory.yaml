@@ -1,11 +1,12 @@
-- name: Set a fact for each test directory relative to the ansible dist
-  set_fact:
-    subdest: "{{ directory['path'].split('/')[1:-1]|join('/') }}"
 
 - name: "Copy {{ directory['path'] }} into the collection test directory"
   copy:
     src: "{{ directory['path'] }}"
-    dest: "{{ collection_parent }}/{{ subdest }}"
+    dest: "{{ collection_parent }}/test/integration/targets"
+
+- name: Set a fact for each test directory relative to the ansible dist
+  set_fact:
+    subdest: "{{ directory['path'].split('/')[1:]|join('/') }}"
 
 - name: Find all the yaml files in the test directory
   find:
