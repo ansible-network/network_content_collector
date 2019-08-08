@@ -1,0 +1,20 @@
+
+- name: "Create the test directories"
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items: "{{ directories['test'] }}"
+
+- name: Build a list of the directories in the test directory
+  find:
+    paths: "{{ ansible_source_directory }}/test/integration/targets"
+    patterns: "{{ collection_namespace }}*"
+    file_type: directory
+  connection: local
+  register: test_source_directories
+
+- name: Copy each test integration directory into the collection
+  include: migrate_test_directory.yaml
+  loop: "{{ test_source_directories['files'] }}"
+  loop_control:
+    loop_var: directory

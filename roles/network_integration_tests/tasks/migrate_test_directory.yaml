@@ -1,0 +1,22 @@
+- name: Set a fact for each test directory relative to the ansible dist
+  set_fact:
+    subdest: "{{ directory['path'].split('/')[1:-1]|join('/') }}"
+
+- name: "Copy {{ directory['path'] }} into the collection test directory"
+  copy:
+    src: "{{ directory['path'] }}"
+    dest: "{{ collection_parent }}/{{ subdest }}"
+
+- name: Find all the yaml files in the test directory
+  find:
+    paths: "{{ collection_parent }}/{{ subdest }}"
+    patterns: '*.yml,*.yaml'
+    recurse: yes
+  connection: local
+  register: yaml_files
+
+- name: Process each yml file in the test directory
+  include: update_test_file.yaml
+  loop: "{{ yaml_files['files'] }}"
+  loop_control:
+    loop_var: file

@@ -2,12 +2,14 @@
   gather_facts: false
   vars:
     ansible_source_directory: ./ansible-2.8.3
-    destination_directory: ~/github/ansible_collections
+    destination_directory: /home/bthornto/github/ansible_collections
     collection_namespace: vyos
     collection_name: vyos
     source_sub_directory: /network/vyos
   roles:
+  - clear_dest_directories
   - ../content_collector/roles/scaffold_directories
   - ../content_collector/roles/migrate_content
   - ../content_collector/roles/test_modules
   - ../content_collector/roles/galaxy_yml
+  - network_integration_tests
