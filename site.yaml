@@ -12,3 +12,4 @@
   - scaffold_directories
   - migrate_content
   - network_integration_tests
+  - reformat_code
