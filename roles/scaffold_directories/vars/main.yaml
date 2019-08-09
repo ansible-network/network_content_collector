@@ -1,5 +1,10 @@
 collection_parent: "{{ destination_directory }}/{{ collection_namespace}}/{{ collection_name }}"
-rm_directories:
+directories:
+  collection:
+  - "~/.ansible/ansible-collections"
+  - "{{ destination_directory }}"
+  - "{{ destination_directory}}/{{ collection_namespace }}"
+  - "{{ collection_parent }}"
   - "{{ collection_parent }}/plugins/modules"
   - "{{ collection_parent }}/plugins/module_utils"
   - "{{ collection_parent }}/plugins/filter"
@@ -8,7 +13,3 @@ rm_directories:
   - "{{ collection_parent }}/playbooks"
   - "{{ collection_parent }}/docs"
   - "{{ collection_parent }}/roles"
-  - "{{ collection_parent }}/test"
-  - "{{ collection_parent }}/test/integration"
-  - "{{ collection_parent }}/test/integration/targets"
-  - "{{ collection_parent }}/test/sanity"

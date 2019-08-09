@@ -6,11 +6,11 @@
 
 - name: Set a fact for each test directory relative to the ansible dist
   set_fact:
-    subdest: "{{ directory['path'].split('/')[1:]|join('/') }}"
+    dest: "{{ collection_parent}}{{ directory['path'] | replace(ansible_source_directory, '') }}"
 
 - name: Find all the yaml files in the test directory
   find:
-    paths: "{{ collection_parent }}/{{ subdest }}"
+    paths: "{{ dest }}"
     patterns: '*.yml,*.yaml'
     recurse: yes
   connection: local

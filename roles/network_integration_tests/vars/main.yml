@@ -3,3 +3,4 @@ directories:
   - "{{ collection_parent }}/test"
   - "{{ collection_parent }}/test/integration"
   - "{{ collection_parent }}/test/integration/targets"
+  - "{{ collection_parent }}/test/sanity"

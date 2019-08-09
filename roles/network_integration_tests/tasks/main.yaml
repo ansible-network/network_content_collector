@@ -18,3 +18,8 @@
   loop: "{{ test_source_directories['files'] }}"
   loop_control:
     loop_var: directory
+#
+# - name: Copy the ignore.txt sanity check file
+#   copy:
+#     src: "{{ ansible_source_directory }}/test/sanity/ignore.txt"
+#     dest: "{{ collection_parent }}/test/sanity/ignore.txt"

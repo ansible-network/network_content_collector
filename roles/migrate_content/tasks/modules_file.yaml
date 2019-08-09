@@ -1,0 +1,18 @@
+
+- set_fact:
+    dest: "{{ collection_parent}}/plugins/modules/{{ file['path']|basename }}"
+
+- name: Ensure the dest directory exists
+  file:
+    path: "{{ dest|dirname }}"
+    state: directory
+
+- name: "Copy {{ file['path'] }} into the collection directory structure"
+  copy:
+    src: "{{ file['path'] }}"
+    dest: "{{ dest }}"
+
+- name: Update the files import statements
+  include: update_file.yaml
+  vars:
+    file_path: "{{ dest }}"
