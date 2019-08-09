@@ -1,2 +1,2 @@
 - name: Run the reformatting tool
-  shell: black -v {{ collection_parent }}
+  shell: black -v -l79 {{ collection_parent }}
