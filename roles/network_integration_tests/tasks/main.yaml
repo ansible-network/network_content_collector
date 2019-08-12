@@ -8,7 +8,9 @@
 - name: Build a list of the directories in the test directory
   find:
     paths: "{{ ansible_source_directory }}/test/integration/targets"
-    patterns: "{{ collection_namespace }}*"
+    patterns:
+    - "{{ collection_namespace }}*"
+    - "prepare_{{ collection_namespace }}_tests"
     file_type: directory
   connection: local
   register: test_source_directories
@@ -18,8 +20,3 @@
   loop: "{{ test_source_directories['files'] }}"
   loop_control:
     loop_var: directory
-#
-# - name: Copy the ignore.txt sanity check file
-#   copy:
-#     src: "{{ ansible_source_directory }}/test/sanity/ignore.txt"
-#     dest: "{{ collection_parent }}/test/sanity/ignore.txt"
