@@ -9,7 +9,7 @@
   find:
     paths: "{{ ansible_source_directory }}/test/integration/targets"
     patterns:
-    - "{{ collection_name }}*"
+    - "{{ collection_name }}_*"
     - "prepare_{{ collection_name }}_tests"
     file_type: directory
   connection: local
