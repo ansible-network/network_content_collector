@@ -36,6 +36,10 @@
       name: junos
     - namespace: vyos
       name: vyos
+    - namespace: network
+      name: cli
+    - namespace: network
+      name: netconf
 
     loop_control:
       loop_var: collection
