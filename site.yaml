@@ -28,9 +28,14 @@
       name: eos
     - namespace: cisco
       name: ios
+    - namespace: cisco
+      name: iosxr
+    - namespace: cisco
+      name: nxos
     - namespace: juniper
       name: junos
     - namespace: vyos
       name: vyos
+
     loop_control:
       loop_var: collection
