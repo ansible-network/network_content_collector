@@ -3,9 +3,5 @@
 
 This is WIP that leverages the content collector to create platform specific collections.
 
-get ansible:
-
-`10249  `git clone -b devel https://github.com/ansible/ansible --depth 1`
-
-
+`hub` is required, `sudo dnf install hub` (do one PR manually to get your creds setup)
 `black` is required, `pip install black`

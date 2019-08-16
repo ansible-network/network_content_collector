@@ -1,0 +1,36 @@
+# always use full paths for the ansible source and dest dirs
+- hosts: localhost
+  gather_facts: false
+  vars:
+    ansible_source_directory: /home/bthornto/github/network_content_collector/ansible
+    destination_directory: /home/bthornto/github/ansible_collections
+  tasks:
+  - name: Start fresh every time
+    file:
+      state: absent
+      path: "{{ ansible_source_directory }}"
+
+  - name: Retrieve ansible
+    git:
+      repo: git@github.com:ansible/ansible.git
+      dest: "{{ ansible_source_directory }}"
+      depth: 1
+    register: ansible_clone
+
+  - name: Get the SHA of the last commit
+    set_fact:
+      ansible_sha: "{{ ansible_clone['after'] }}"
+
+  - name: Run for each platform
+    include: one_platform.yaml
+    loop:
+    - namespace: arista
+      name: eos
+    - namespace: cisco
+      name: ios
+    - namespace: juniper
+      name: junos
+    - namespace: vyos
+      name: vyos
+    loop_control:
+      loop_var: collection

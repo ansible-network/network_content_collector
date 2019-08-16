@@ -1,0 +1,4 @@
+directories:
+  collection:
+  - "{{ destination_directory }}"
+  - "{{ destination_directory}}/{{ collection_namespace }}"

@@ -1,4 +1,3 @@
-collection_parent: "{{ destination_directory }}/{{ collection_namespace}}/{{ collection_name }}"
 rm_directories:
   - "{{ collection_parent }}/plugins/modules"
   - "{{ collection_parent }}/plugins/module_utils"

@@ -1,0 +1,19 @@
+
+- include_role:
+    role: "{{ role }}"
+  vars:
+    collection_namespace: "{{ collection.namespace }}"
+    collection_name: "{{ collection.name }}"
+    platform: "{{ collection.name }}"
+    collection_parent: "{{ destination_directory }}/{{ collection.namespace}}/{{ collection.name }}"
+  loop:
+  - scaffold_local_directories
+  - clone_repo
+  - scaffold_collection
+  - clear_dest_directories
+  - migrate_content
+  - network_integration_tests
+  - reformat_code
+  - commit_repo
+  loop_control:
+    loop_var: role
