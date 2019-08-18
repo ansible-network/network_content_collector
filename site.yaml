@@ -26,20 +26,20 @@
     loop:
     - namespace: arista
       name: eos
-    - namespace: cisco
-      name: ios
-    - namespace: cisco
-      name: iosxr
-    - namespace: cisco
-      name: nxos
-    - namespace: juniper
-      name: junos
-    - namespace: vyos
-      name: vyos
-    - namespace: network
-      name: cli
-    - namespace: network
-      name: netconf
+    # - namespace: cisco
+    #   name: ios
+    # - namespace: cisco
+    #   name: iosxr
+    # - namespace: cisco
+    #   name: nxos
+    # - namespace: juniper
+    #   name: junos
+    # - namespace: vyos
+    #   name: vyos
+    # - namespace: network
+    #   name: cli
+    # - namespace: network
+    #   name: netconf
 
     loop_control:
       loop_var: collection

@@ -24,12 +24,12 @@
     replace: "{{ new }}"
 
 # split any long line we may have created
-- name: Set a fact for the from xxx import xxx statement changes
-  set_fact:
-    current: 'from ansible_collections.{{ collection_namespace }}.{{ collection_name }}.plugins.module_utils.network.{{ platform }}(.*)'
-    new: |
-      from ansible_collections.{{ collection_namespace }}.{{ collection_name }}.plugins.module_utils.network. \
-        {{ platform }}\1
+# - name: Set a fact for the from xxx import xxx statement changes
+#   set_fact:
+#     current: 'from ansible_collections.{{ collection_namespace }}.{{ collection_name }}.plugins.module_utils.network.{{ platform }}(.*)'
+#     new: |
+#       from ansible_collections.{{ collection_namespace }}.{{ collection_name }}.plugins.module_utils.network. \
+#         {{ platform }}\1
 
 - name: "Update the import statements in {{ dest }}"
   replace:
