@@ -24,12 +24,12 @@
   - name: Run for each platform
     include: one_platform.yaml
     loop:
-    - namespace: arista
-      name: eos
+    # - namespace: arista
+    #   name: eos
     # - namespace: cisco
     #   name: ios
-    # - namespace: cisco
-    #   name: iosxr
+    - namespace: cisco
+      name: iosxr
     # - namespace: cisco
     #   name: nxos
     # - namespace: juniper
