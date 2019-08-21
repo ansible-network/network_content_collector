@@ -1,11 +1,12 @@
-
+- debug:
+    var: file
 - name: Set the basename of the file
   set_fact:
     basename: "{{ file['path']|basename }}"
 
 - name: Set a fact for the full destination
   set_fact:
-    dest: "{{ collection_parent}}/plugins/modules/{{ basename }}"
+    dest: "{{ collection_parent}}/plugins/{{ plugin_subdir }}/{{ basename }}"
 
 - name: Ensure the dest directory exists
   file:
