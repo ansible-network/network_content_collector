@@ -1,0 +1,82 @@
+---
+- job:
+    name: ncc-tox-integration-base
+    parent: unittests
+    run: tests/playbooks/integration.yaml
+    required-projects:
+      - name: github.com/ansible/ansible
+      - name: github.com/ansible-network/network_content_collector
+    timeout: 3600
+    nodeset: fedora-latest-1vcpu
+
+- job:
+    name: network-content-collector-arista-eos
+    parent: ncc-tox-integration-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.arista.eos
+    vars:
+      collection_namespace: arista
+      collection_name: eos
+
+- job:
+    name: network-content-collector-cisco-ios
+    parent: ncc-tox-integration-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.cisco.ios
+    vars:
+      collection_namespace: cisco
+      collection_name: ios
+
+- job:
+    name: network-content-collector-cisco-iosxr
+    parent: ncc-tox-integration-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.cisco.iosxr
+    vars:
+      collection_namespace: cisco
+      collection_name: iosxr
+
+- job:
+    name: network-content-collector-juniper-junos
+    parent: ncc-tox-integration-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.juniper.junos
+    vars:
+      collection_namespace: juniper
+      collection_name: junos
+
+- job:
+    name: network-content-collector-network-cli
+    parent: ncc-tox-integration-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.network.cli
+    vars:
+      collection_namespace: network
+      collection_name: cli
+
+- job:
+    name: network-content-collector-vyos-vyos
+    parent: ncc-tox-integration-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.vyos.vyos
+    vars:
+      collection_namespace: vyos
+      collection_name: vyos
+
+- project:
+    check:
+      jobs:
+        - network-content-collector-arista-eos
+        - network-content-collector-cisco-ios
+        - network-content-collector-cisco-iosxr
+        - network-content-collector-juniper-junos
+        - network-content-collector-network-cli
+        - network-content-collector-vyos-vyos
+    gate:
+      jobs:
+        - network-content-collector-arista-eos
+        - network-content-collector-cisco-ios
+        - network-content-collector-cisco-iosxr
+        - network-content-collector-juniper-junos
+        - network-content-collector-network-cli
+        - network-content-collector-vyos-vyos

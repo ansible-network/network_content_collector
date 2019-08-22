@@ -1,0 +1,4 @@
+ansible>=2.4.0
+black
+git-pull-request
+selinux
