@@ -1,0 +1,23 @@
+- hosts: localhost
+  vars:
+    ansible_sha: "ansible/collections-sync"
+    ansible_source_directory: "{{ ansible_user_dir }}/src/github.com/ansible/ansible"
+    destination_directory: "{{ ansible_user_dir }}/src/github.com/ansible-network"
+  tasks:
+    - include_role:
+        role: "{{ role }}"
+      vars:
+        collection_namespace: "{{ cli_namespace }}"
+        collection_name: "{{ cli_name }}"
+        platform: "{{ cli_name }}"
+        collection_parent: "{{ destination_directory }}/ansible_collections.{{ cli_namespace }}.{{ cli_name }}"
+      loop:
+      - scaffold_local_directories
+      - create_branch
+      - scaffold_collection
+      - clear_dest_directories
+      - migrate_content
+      - network_integration_tests
+      - reformat_code
+      loop_control:
+        loop_var: role
