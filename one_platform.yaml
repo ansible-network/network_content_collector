@@ -9,6 +9,7 @@
   loop:
   - scaffold_local_directories
   - clone_repo
+  - create_branch
   - scaffold_collection
   - clear_dest_directories
   - migrate_content
