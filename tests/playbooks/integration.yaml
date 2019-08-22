@@ -1,9 +1,27 @@
 - hosts: all
   tasks:
-    - name: Run integration test
+    - name: git config user.name
+      git_config:
+        name: user.name
+        scope: global
+        value: CaptTrews
+
+    - name: git config user.email
+      git_config:
+        name: user.email
+        scope: global
+        value: capttrews@gmail.com
+
+    - name: Bootstrap tox environment
       include_role:
         name: tox
       vars:
-        tox_extra_args: "-vv -- ansible-playbook -vv -e cli_namespace={{ collection_namespace }} -e cli_name={{ collection_name }} site-new.yaml"
+        tox_extra_args: "-vv --notest"
         tox_install_siblings: false
         zuul_work_dir: "{{ zuul.projects['github.com/ansible-network/network_content_collector'].src_dir }}"
+
+    - name: Run integration tests
+      args:
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ansible-network/network_content_collector'].src_dir }}"
+        executable: /bin/bash
+      shell: "source .tox/venv/bin/activate; ansible-playbook -vv -e cli_namespace={{ collection_namespace }} -e cli_name={{ collection_name }} site-new.yaml"
