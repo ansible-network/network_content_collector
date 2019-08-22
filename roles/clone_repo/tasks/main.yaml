@@ -6,8 +6,8 @@
 
 - name: Clone the repo
   git:
-    repo: "git@github.com:ansible-network/ansible_collections.{{ collection_namespace }}.{{ platform }}.git"
-    dest: "{{ destination_directory }}/{{ collection_namespace }}/{{ platform }}"
+    repo: "https://github.com/ansible-network/ansible_collections.{{ collection_namespace }}.{{ platform }}.git"
+    dest: "{{ collection_parent }}"
 
 - name: Create a new branch
-  shell: "cd {{ collection_parent }} && git checkout -t -b ansible_sha_{{ ansible_sha }}"
+  shell: "cd {{ collection_parent }} && git checkout -t -b {{ ansible_sha }}"

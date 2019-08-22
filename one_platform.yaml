@@ -5,7 +5,7 @@
     collection_namespace: "{{ collection.namespace }}"
     collection_name: "{{ collection.name }}"
     platform: "{{ collection.name }}"
-    collection_parent: "{{ destination_directory }}/{{ collection.namespace}}/{{ collection.name }}"
+    collection_parent: "{{ destination_directory }}/ansible_collections.{{ collection.namespace }}.{{ collection.name }}"
   loop:
   - scaffold_local_directories
   - clone_repo

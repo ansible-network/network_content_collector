@@ -19,7 +19,7 @@
 
   - name: Get the SHA of the last commit
     set_fact:
-      ansible_sha: "{{ ansible_clone['after'] }}"
+      ansible_sha: "ansible_sha_{{ ansible_clone['after'] }}"
 
   - name: Run for each platform
     include: one_platform.yaml
