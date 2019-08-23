@@ -7,13 +7,3 @@
   shell: "git commit --allow-empty -m 'based on ansible/ansible {{ ansible_sha }}'"
   args:
     chdir: "{{ collection_parent }}"
-
-- name: Push the repo
-  shell: "git push origin"
-  args:
-    chdir: "{{ collection_parent }}"
-
-- name: Issue PR
-  shell: "hub pull-request -m 'based on ansible/ansible {{ ansible_sha }}'"
-  args:
-    chdir: "{{ collection_parent }}"

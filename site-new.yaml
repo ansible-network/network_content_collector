@@ -19,5 +19,6 @@
       - migrate_content
       - network_integration_tests
       - reformat_code
+      - commit_repo
       loop_control:
         loop_var: role
