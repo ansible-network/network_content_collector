@@ -5,6 +5,11 @@
         chdir: "{{ ansible_user_dir }}/src/github.com/ansible-network/ansible_collections.{{ collection_namespace }}.{{ collection_name }}"
       shell: "git remote set-url origin https://github.com/ansible-network/ansible_collections.{{ collection_namespace }}.{{ collection_name }}.git"
 
+    - name: Setup git to track remote branch
+      args:
+        chdir: "{{ ansible_user_dir }}/src/github.com/ansible-network/ansible_collections.{{ collection_namespace }}.{{ collection_name }}"
+      shell: git branch --set-upstream-to=origin/master master
+
     - name: Bootstrap tox environment
       include_role:
         name: tox
