@@ -74,6 +74,7 @@
 - job:
     name: network-content-collector-base
     parent: unittests
+    pre-run: tests/playbooks/pre.yaml
     run: tests/playbooks/run.yaml
     required-projects:
       - name: github.com/ansible/ansible
