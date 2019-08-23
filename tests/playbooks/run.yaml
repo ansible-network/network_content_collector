@@ -3,12 +3,7 @@
     - name: Setup github remotes
       args:
         chdir: "{{ ansible_user_dir }}/src/github.com/ansible-network/ansible_collections.{{ collection_namespace }}.{{ collection_name }}"
-      shell: "git remote remove origin"
-
-    - name: Setup github remotes
-      args:
-        chdir: "{{ ansible_user_dir }}/src/github.com/ansible-network/ansible_collections.{{ collection_namespace }}.{{ collection_name }}"
-      shell: "git remote add origin https://github.com/ansible-network/ansible_collections.{{ collection_namespace }}.{{ collection_name }}"
+      shell: "git remote set-url origin https://github.com/ansible-network/ansible_collections.{{ collection_namespace }}.{{ collection_name }}.git"
 
     - name: Bootstrap tox environment
       include_role:
