@@ -4,6 +4,7 @@
   vars:
     ansible_source_directory: /home/bthornto/github/network_content_collector/ansible
     destination_directory: /home/bthornto/github/ansible_collections
+    git_commit_opts: "--allow-empty"
   tasks:
   - name: Start fresh every time
     file:

@@ -6,6 +6,8 @@
     required-projects:
       - name: github.com/ansible/ansible
       - name: github.com/ansible-network/network_content_collector
+    vars:
+      git_commit_opts: "-s"
 
 - job:
     name: propose-network-content-collector-base
@@ -79,6 +81,8 @@
     required-projects:
       - name: github.com/ansible/ansible
       - name: github.com/ansible-network/network_content_collector
+    vars:
+      git_commit_opts: "--allow-empty"
     timeout: 3600
     nodeset: fedora-latest-1vcpu
 
