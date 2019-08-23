@@ -21,6 +21,10 @@
     set_fact:
       ansible_sha: "ansible_sha_{{ ansible_clone['after'] }}"
 
+  - name: Create git commit message
+    set_fact:
+      ansible_commit_message: "based on ansible/ansible {{ ansible_sha }}"
+
   - name: Run for each platform
     include: one_platform.yaml
     loop:
