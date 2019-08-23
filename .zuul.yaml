@@ -1,8 +1,80 @@
 ---
 - job:
-    name: ncc-tox-integration-base
+    name: propose-network-content-collector-base
+    parent: propose-github-updates
+    run: tests/playbooks/run.yaml
+    required-projects:
+      - name: github.com/ansible/ansible
+      - name: github.com/ansible-network/network_content_collector
+
+- job:
+    name: propose-network-content-collector-base
     parent: unittests
-    run: tests/playbooks/integration.yaml
+
+- job:
+    name: propose-network-content-collector-arista-eos
+    parent: propose-network-content-collector-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.arista.eos
+    vars:
+      collection_namespace: arista
+      collection_name: eos
+      proposal_project_src: ~/src/github.com/ansible-network/ansible_collections.arista.eos
+
+- job:
+    name: propose-network-content-collector-cisco-ios
+    parent: propose-network-content-collector-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.cisco.ios
+    vars:
+      collection_namespace: cisco
+      collection_name: ios
+      proposal_project_src: ~/src/github.com/ansible-network/ansible_collections.cisco.ios
+
+- job:
+    name: propose-network-content-collector-cisco-iosxr
+    parent: propose-network-content-collector-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.cisco.iosxr
+    vars:
+      collection_namespace: cisco
+      collection_name: iosxr
+      proposal_project_src: ~/src/github.com/ansible-network/ansible_collections.cisco.iosxr
+
+- job:
+    name: propose-network-content-collector-juniper-junos
+    parent: propose-network-content-collector-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.juniper.junos
+    vars:
+      collection_namespace: juniper
+      collection_name: junos
+      proposal_project_src: ~/src/github.com/ansible-network/ansible_collections.juniper.junos
+
+- job:
+    name: propose-network-content-collector-network-cli
+    parent: propose-network-content-collector-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.network.cli
+    vars:
+      collection_namespace: network
+      collection_name: cli
+      proposal_project_src: ~/src/github.com/ansible-network/ansible_collections.network.cli
+
+- job:
+    name: propose-network-content-collector-vyos-vyos
+    parent: propose-network-content-collector-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.vyos.vyos
+    vars:
+      collection_namespace: vyos
+      collection_name: vyos
+      proposal_project_src: ~/src/github.com/ansible-network/ansible_collections.vyos.vyos
+
+- job:
+    name: network-content-collector-base
+    parent: unittests
+    run: tests/playbooks/run.yaml
     required-projects:
       - name: github.com/ansible/ansible
       - name: github.com/ansible-network/network_content_collector
@@ -11,7 +83,7 @@
 
 - job:
     name: network-content-collector-arista-eos
-    parent: ncc-tox-integration-base
+    parent: network-content-collector-base
     required-projects:
       - name: github.com/ansible-network/ansible_collections.arista.eos
     vars:
@@ -20,7 +92,7 @@
 
 - job:
     name: network-content-collector-cisco-ios
-    parent: ncc-tox-integration-base
+    parent: network-content-collector-base
     required-projects:
       - name: github.com/ansible-network/ansible_collections.cisco.ios
     vars:
@@ -29,7 +101,7 @@
 
 - job:
     name: network-content-collector-cisco-iosxr
-    parent: ncc-tox-integration-base
+    parent: network-content-collector-base
     required-projects:
       - name: github.com/ansible-network/ansible_collections.cisco.iosxr
     vars:
@@ -38,7 +110,7 @@
 
 - job:
     name: network-content-collector-juniper-junos
-    parent: ncc-tox-integration-base
+    parent: network-content-collector-base
     required-projects:
       - name: github.com/ansible-network/ansible_collections.juniper.junos
     vars:
@@ -47,7 +119,7 @@
 
 - job:
     name: network-content-collector-network-cli
-    parent: ncc-tox-integration-base
+    parent: network-content-collector-base
     required-projects:
       - name: github.com/ansible-network/ansible_collections.network.cli
     vars:
@@ -56,7 +128,7 @@
 
 - job:
     name: network-content-collector-vyos-vyos
-    parent: ncc-tox-integration-base
+    parent: network-content-collector-base
     required-projects:
       - name: github.com/ansible-network/ansible_collections.vyos.vyos
     vars:
@@ -80,3 +152,6 @@
         - network-content-collector-juniper-junos
         - network-content-collector-network-cli
         - network-content-collector-vyos-vyos
+    post:
+      jobs:
+        - propose-network-content-collector-vyos-vyos
