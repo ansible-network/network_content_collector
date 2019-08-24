@@ -5,18 +5,9 @@
     state: directory
   with_items: "{{ directories['test'] }}"
 
-- name: Set fact for target-prefixes
-  set_fact:
-    __target_prefix: "{{ collection_name }}"
-
-- name: Enable netconf target-prefixes
-  set_fact:
-    __target_prefix: "{{ __target_prefix }}\nnetconf"
-  when: collection_name in ["iosxr", "junos"]
-
 - name: Create target-prefixes.network for ansible-test
   copy:
-    content: "{{ __target_prefix }}"
+    content: "{{ collection_name }}"
     dest: "{{ collection_parent }}/test/integration/target-prefixes.network"
 
 - name: Build a list of the directories in the test directory
