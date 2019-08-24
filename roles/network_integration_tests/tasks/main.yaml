@@ -19,21 +19,12 @@
     content: "{{ __target_prefix }}"
     dest: "{{ collection_parent }}/test/integration/target-prefixes.network"
 
-- name: Set fact for patterns
-  set_fact:
-    __test_patterns:
-      - "{{ collection_name }}_*"
-      - "prepare_{{ collection_name }}_tests"
-
-- name: Enable netconf patterns
-  set_fact:
-    __test_patterns: "{{ __test_patterns }} + ['netconf_*']"
-  when: collection_name in ["iosxr", "junos"]
-
 - name: Build a list of the directories in the test directory
   find:
     paths: "{{ ansible_source_directory }}/test/integration/targets"
-    patterns: "{{ __test_patterns }}"
+    patterns:
+    - "{{ collection_name }}_*"
+    - "prepare_{{ collection_name }}_tests"
     file_type: directory
   connection: local
   register: test_source_directories
