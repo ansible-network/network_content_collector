@@ -22,4 +22,4 @@
       args:
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ansible-network/network_content_collector'].src_dir }}"
         executable: /bin/bash
-      shell: "source .tox/venv/bin/activate; ansible-playbook -vv -e cli_namespace={{ collection_namespace }} -e cli_name={{ collection_name }} site-new.yaml"
+      shell: "source .tox/venv/bin/activate; ansible-playbook -vv -e git_commit_opts=\"{{ git_commit_opts }}\" -e cli_namespace={{ collection_namespace }} -e cli_name={{ collection_name }} site-new.yaml"
