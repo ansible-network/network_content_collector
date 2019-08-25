@@ -18,7 +18,7 @@
 
 - name: Enable netconf patterns
   set_fact:
-    __test_patterns: "{{ __test_patterns }} + ['prepare_junos_tests', 'prepare_iosxr_tests']"
+    __test_patterns: "{{ __test_patterns }} + ['prepare_junos_tests', 'prepare_iosxr_tests', 'prepare_sros_tests']"
   when: collection_name in ["netconf"]
 
 - name: Build a list of the directories in the test directory
