@@ -178,6 +178,15 @@
         - network-content-collector-network-cli
         - network-content-collector-network-netconf
         - network-content-collector-vyos-vyos
+    periodic:
+      jobs:
+        - propose-network-content-collector-arista-eos
+        - propose-network-content-collector-cisco-ios
+        - propose-network-content-collector-cisco-iosxr
+        - propose-network-content-collector-juniper-junos
+        - propose-network-content-collector-network-cli
+        - propose-network-content-collector-network-netconf
+        - propose-network-content-collector-vyos-vyos
     post:
       jobs:
         - propose-network-content-collector-arista-eos
