@@ -34,3 +34,6 @@
   loop: "{{ test_source_directories['files'] }}"
   loop_control:
     loop_var: directory
+
+- name: Rename test to tests
+  shell: "mv {{ collection_parent }}/test {{ collection_parent }}/tests"
