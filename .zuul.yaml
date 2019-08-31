@@ -8,6 +8,7 @@
       - name: github.com/ansible-network/network_content_collector
     vars:
       git_commit_opts: "-s"
+    timeout: 3600
 
 - job:
     name: propose-network-content-collector-base
