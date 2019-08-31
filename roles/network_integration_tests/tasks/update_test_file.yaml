@@ -3,6 +3,14 @@
       dest: "{{ file['path'] }}"
       regexp: '^(\s+)({{ collection_name }}_[a-z0-9_]+:)(.*)$'
       replace: '\1{{ collection_namespace }}.{{ collection_name }}.\2\3'
+  when: collection_name not in ["netconf"]
+
+- name: "Update each module call to use the FQCN {{ file['path']|replace(collection_parent + '/test/integration/targets', '') }}"
+  replace:
+      dest: "{{ file['path'] }}"
+      regexp: '^(\s+)({{ collection_name }}_(?!vrf|port)[a-z0-9_]+:)(.*)$'
+      replace: '\1{{ collection_namespace }}.{{ collection_name }}.\2\3'
+  when: collection_name in ["netconf"]
 
 - name: "Update each module call to reflect the network.cli collection"
   replace:
