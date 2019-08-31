@@ -2,10 +2,24 @@
   replace:
       dest: "{{ file['path'] }}"
       regexp: '^(\s+)({{ collection_name }}_[a-z0-9_]+:)(.*)$'
-      replace: '\1{{ collection_namespace }}.{{ collection_name}}.\2\3'
+      replace: '\1{{ collection_namespace }}.{{ collection_name }}.\2\3'
 
 - name: "Update each module call to reflect the network.cli collection"
   replace:
       dest: "{{ file['path'] }}"
       regexp: '^(\s+)(cli_[a-z0-9_]+:)(.*)$'
       replace: '\1network.cli.\2\3'
+
+- name: "Update each module call to reflect the cisco.iosxr collection"
+  replace:
+      dest: "{{ file['path'] }}"
+      regexp: '^(\s+)(iosxr_[a-z0-9_]+:)(.*)$'
+      replace: '\1cisco.iosxr.\2\3'
+  when: collection_name in ["netconf"]
+
+- name: "Update each module call to reflect the juniper.junos collection"
+  replace:
+      dest: "{{ file['path'] }}"
+      regexp: '^(\s+)(junos_[a-z0-9_]+:)(.*)$'
+      replace: '\1juniper.junos.\2\3'
+  when: collection_name in ["netconf"]
