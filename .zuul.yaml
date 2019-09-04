@@ -45,6 +45,16 @@
       proposal_project_src: ~/src/github.com/ansible-network/ansible_collections.cisco.iosxr
 
 - job:
+    name: propose-network-content-collector-cisco-nxos
+    parent: propose-network-content-collector-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.cisco.nxos
+    vars:
+      collection_namespace: cisco
+      collection_name: nxos
+      proposal_project_src: ~/src/github.com/ansible-network/ansible_collections.cisco.nxos
+
+- job:
     name: propose-network-content-collector-juniper-junos
     parent: propose-network-content-collector-base
     required-projects:
@@ -125,6 +135,15 @@
       collection_name: iosxr
 
 - job:
+    name: network-content-collector-cisco-nxos
+    parent: network-content-collector-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.cisco.nxos
+    vars:
+      collection_namespace: cisco
+      collection_name: nxos
+
+- job:
     name: network-content-collector-juniper-junos
     parent: network-content-collector-base
     required-projects:
@@ -166,6 +185,7 @@
         - network-content-collector-arista-eos
         - network-content-collector-cisco-ios
         - network-content-collector-cisco-iosxr
+        - network-content-collector-cisco-nxos
         - network-content-collector-juniper-junos
         - network-content-collector-network-cli
         - network-content-collector-network-netconf
@@ -175,6 +195,7 @@
         - network-content-collector-arista-eos
         - network-content-collector-cisco-ios
         - network-content-collector-cisco-iosxr
+        - network-content-collector-cisco-nxos
         - network-content-collector-juniper-junos
         - network-content-collector-network-cli
         - network-content-collector-network-netconf
@@ -184,6 +205,7 @@
         - propose-network-content-collector-arista-eos
         - propose-network-content-collector-cisco-ios
         - propose-network-content-collector-cisco-iosxr
+        - propose-network-content-collector-cisco-nxos
         - propose-network-content-collector-juniper-junos
         - propose-network-content-collector-network-cli
         - propose-network-content-collector-network-netconf
@@ -193,6 +215,7 @@
         - propose-network-content-collector-arista-eos
         - propose-network-content-collector-cisco-ios
         - propose-network-content-collector-cisco-iosxr
+        - propose-network-content-collector-cisco-nxos
         - propose-network-content-collector-juniper-junos
         - propose-network-content-collector-network-cli
         - propose-network-content-collector-network-netconf
