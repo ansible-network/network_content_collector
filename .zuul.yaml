@@ -200,7 +200,7 @@
         - network-content-collector-network-cli
         - network-content-collector-network-netconf
         - network-content-collector-vyos-vyos
-    periodic-6hr:
+    periodic:
       jobs:
         - propose-network-content-collector-arista-eos
         - propose-network-content-collector-cisco-ios
