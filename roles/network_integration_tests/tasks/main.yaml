@@ -10,6 +10,11 @@
     content: "{{ collection_name }}"
     dest: "{{ collection_parent }}/test/integration/target-prefixes.network"
 
+- name: Copy network-integration.requirements.txt for ansible-test
+  copy:
+    src: "{{ ansible_source_directory }}/test/integration/network-integration.requirements.txt"
+    dest: "{{ collection_parent }}/test/integration/"
+
 - name: Set fact for patterns
   set_fact:
     __test_patterns:
