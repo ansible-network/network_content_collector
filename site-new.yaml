@@ -1,6 +1,6 @@
 - hosts: localhost
   vars:
-    ansible_sha: "ansible/collections-sync"
+    ansible_sha: "ansible/collections-sync-{{ cli_branch }}"
     ansible_source_directory: "{{ ansible_user_dir }}/src/github.com/ansible/ansible"
     destination_directory: "{{ ansible_user_dir }}/src/github.com/ansible-network"
     ansible_commit_message: "Updated from network content collector"
