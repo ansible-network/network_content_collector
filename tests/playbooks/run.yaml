@@ -1,5 +1,9 @@
 - hosts: all
   tasks:
+    - name: Figure out ansible/ansible branch
+      set_fact:
+        __branch: "{{ zuul.projects['github.com/ansible/ansible'].checkout }}"
+
     - name: Setup github remotes
       args:
         chdir: "{{ ansible_user_dir }}/src/github.com/ansible-network/ansible_collections.{{ collection_namespace }}.{{ collection_name }}"
@@ -9,6 +13,13 @@
       args:
         chdir: "{{ ansible_user_dir }}/src/github.com/ansible-network/ansible_collections.{{ collection_namespace }}.{{ collection_name }}"
       shell: git branch --set-upstream-to=origin/master master
+      when: __branch in ['devel']
+
+    - name: Setup git to track remote branch
+      args:
+        chdir: "{{ ansible_user_dir }}/src/github.com/ansible-network/ansible_collections.{{ collection_namespace }}.{{ collection_name }}"
+      shell: "git branch --set-upstream-to=origin/{{ __branch }} {{ __branch }}"
+      when: __branch not in ['devel']
 
     - name: Bootstrap tox environment
       include_role:
@@ -18,8 +29,12 @@
         tox_install_siblings: false
         zuul_work_dir: "{{ zuul.projects['github.com/ansible-network/network_content_collector'].src_dir }}"
 
+    - name: Filter ansible/ansible branch
+      set_fact:
+        __branch: "{{ zuul.projects['github.com/ansible/ansible'].checkout | replace('/', '_') }}"
+
     - name: Run integration tests
       args:
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ansible-network/network_content_collector'].src_dir }}"
         executable: /bin/bash
-      shell: "source .tox/venv/bin/activate; ansible-playbook -vv -e git_commit_opts=\"{{ git_commit_opts }}\" -e cli_namespace={{ collection_namespace }} -e cli_name={{ collection_name }} site-new.yaml"
+      shell: "source .tox/venv/bin/activate; ansible-playbook -vv -e git_commit_opts=\"{{ git_commit_opts }}\" -e cli_branch={{ __branch }} -e cli_namespace={{ collection_namespace }} -e cli_name={{ collection_name }} site-new.yaml"
