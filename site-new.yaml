@@ -8,6 +8,7 @@
     - include_role:
         role: "{{ role }}"
       vars:
+        collection_branch: "{{ cli_branch }}"
         collection_namespace: "{{ cli_namespace }}"
         collection_name: "{{ cli_name }}"
         platform: "{{ cli_name }}"
