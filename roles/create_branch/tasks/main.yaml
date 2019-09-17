@@ -1,2 +1,2 @@
 - name: Create a new branch
-  shell: "cd {{ collection_parent }} && git checkout -b {{ ansible_sha }} --track origin/master"
+  shell: "cd {{ collection_parent }} && git checkout -b {{ ansible_sha }} --track origin/{{ collection_branch }}"

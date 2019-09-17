@@ -29,9 +29,10 @@
         tox_install_siblings: false
         zuul_work_dir: "{{ zuul.projects['github.com/ansible-network/network_content_collector'].src_dir }}"
 
-    - name: Filter ansible/ansible branch
+    - name: Filter ansible/ansible devel branch
       set_fact:
-        __branch: "{{ zuul.projects['github.com/ansible/ansible'].checkout | replace('/', '_') }}"
+        __branch: master
+      when: zuul.projects['github.com/ansible/ansible'].checkout == "devel"
 
     - name: Run integration tests
       args:

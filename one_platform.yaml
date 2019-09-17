@@ -2,6 +2,7 @@
 - include_role:
     role: "{{ role }}"
   vars:
+    collection_branch: master
     collection_namespace: "{{ collection.namespace }}"
     collection_name: "{{ collection.name }}"
     platform: "{{ collection.name }}"
