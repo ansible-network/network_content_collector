@@ -1,9 +1,0 @@
-- name: Run the reformatting tool
-  shell: black -v -l79 {{ collection_parent }}
-  ignore_errors: True
-  register: black
-
-- name: Errors encountered running black
-  debug:
-    var: black.stderr_lines
-  when: black.failed

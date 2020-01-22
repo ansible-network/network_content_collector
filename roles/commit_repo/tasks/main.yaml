@@ -1,9 +1,0 @@
-- name: Add to the repo
-  shell: "git add --all"
-  args:
-    chdir: "{{ collection_parent }}"
-
-- name: Commit the repo
-  shell: "git commit {{ git_commit_opts }} -m '{{ ansible_commit_message }}'"
-  args:
-    chdir: "{{ collection_parent }}"

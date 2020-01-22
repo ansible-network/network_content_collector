@@ -1,5 +1,0 @@
-- name: "Create the collection directory structure"
-  file:
-    path: "{{ item }}"
-    state: directory
-  with_items: "{{ directories['collection'] }}"
