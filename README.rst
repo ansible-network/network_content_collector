@@ -1,7 +1,9 @@
-network_content_collector
-=========================
+This project is no longer maintained.
 
-This is WIP that leverages the content collector to create platform specific collections.
+The contents of this repository are still available in the Git
+source code management system.  To see the contents of this
+repository before it reached its end of life, please check out the
+previous commit with "git checkout HEAD^1".
 
-`hub` is required, `sudo dnf install hub` (do one PR manually to get your creds setup)
-`black` is required, `pip install black`
+For any further questions, please email ansible-devel@googlegroups.com
+or join #ansible-devel on Freenode.

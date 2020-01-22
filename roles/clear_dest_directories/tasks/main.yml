@@ -1,6 +1,0 @@
-
-- name: Clear our collection directories
-  file:
-    state: absent
-    path: "{{ item }}/"
-  loop: "{{ rm_directories }}"
